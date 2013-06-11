@@ -4,7 +4,7 @@
 		<name>Alice Smith</name>
 		<street>123 Maple Street</street>
 		<city>Mill Valley</city>
-		<state>Baba</state>
+		<state>CA</state>
 		<zip>90952</zip>
 	</shipTo>
 	<shipDate>1999-05-25</shipDate>
