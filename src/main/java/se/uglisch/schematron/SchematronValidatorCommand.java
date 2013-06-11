@@ -63,10 +63,4 @@ public class SchematronValidatorCommand {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		Source schema = Resource.apply("/schematron/purchase_order/PurchaseOrder.sch");
-		Source xmlSource = Resource.apply("/schematron/purchase_order/PurchaseOrder.xml");
-		System.out.println(SchematronValidatorCommand.apply(schema, xmlSource).execute());
-	}
-
 }

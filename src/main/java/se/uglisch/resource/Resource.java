@@ -26,29 +26,29 @@ public class Resource extends StreamSource {
 		}
 		return stream;
 	}
-	
+
 	@Override
 	@Deprecated
 	public Reader getReader() {
 		return null;
 	}
-	
+
 	public Reader reader() {
 		return new InputStreamReader(getInputStream());
 	}
-	
+
 	@Override
 	@Deprecated
 	public void setInputStream(InputStream inputStream) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	@Override
 	@Deprecated
 	public void setReader(Reader reader) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

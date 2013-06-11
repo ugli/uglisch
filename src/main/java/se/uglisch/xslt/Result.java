@@ -15,15 +15,11 @@ public class Result extends StreamSource {
 		this.data = charArrayWriter.toCharArray();
 	}
 
-	public String getData() {
-		return String.valueOf(data);
-	}
-	
 	@Override
 	public Reader getReader() {
 		return new CharArrayReader(data);
 	}
-	
+
 	@Override
 	@Deprecated
 	public void setReader(Reader reader) {
@@ -35,7 +31,7 @@ public class Result extends StreamSource {
 	public InputStream getInputStream() {
 		return null;
 	}
-	
+
 	@Override
 	@Deprecated
 	public void setInputStream(InputStream inputStream) {
