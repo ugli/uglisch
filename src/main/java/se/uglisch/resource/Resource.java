@@ -1,6 +1,8 @@
 package se.uglisch.resource;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 import javax.xml.transform.stream.StreamSource;
 
@@ -10,21 +12,43 @@ public class Resource extends StreamSource {
 
 	private Resource(final String value) {
 		this.value = value;
-		setInputStream(toStream());
 	}
 
 	public static Resource apply(final String value) {
 		return new Resource(value);
 	}
 
-	private InputStream toStream() {
+	@Override
+	public InputStream getInputStream() {
 		final InputStream stream = getClass().getResourceAsStream(value);
 		if (stream == null) {
 			throw new ResourceNotFoundException(value);
 		}
 		return stream;
 	}
-
+	
+	@Override
+	@Deprecated
+	public Reader getReader() {
+		return null;
+	}
+	
+	public Reader reader() {
+		return new InputStreamReader(getInputStream());
+	}
+	
+	@Override
+	@Deprecated
+	public void setInputStream(InputStream inputStream) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	@Deprecated
+	public void setReader(Reader reader) {
+		throw new UnsupportedOperationException();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

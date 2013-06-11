@@ -1,7 +1,6 @@
 package se.uglisch.xsd;
 
 import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 import se.uglisch.resource.Resource;
 import se.uglisch.xslt.Result;
@@ -35,12 +34,6 @@ public final class Xsd2SchCommand {
 		final Result schematron = XsltTransform.apply(xsd2schXslt, expandedXsd).transform();
 		// XsltTransform.apply(compessXslt, schematron).transformToCharArray();
 		return schematron;
-	}
-
-	public static void main(String[] args) {
-		StreamSource originialXsd = Resource.apply("/shiporder.xsd");
-		Result schematron = new Xsd2SchCommand(originialXsd).execute();
-		System.out.println(schematron.getData());
 	}
 
 }
