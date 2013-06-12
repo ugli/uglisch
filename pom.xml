@@ -3,8 +3,30 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>se.ugli</groupId>
 	<artifactId>uglisch</artifactId>
+	<packaging>jar</packaging>
+	<name>UgliSch</name>
 	<version>1.0</version>
-	<name>Ugli Schematron Validator</name>
+	<description>Ugli Schematron Validator</description>
+	<url>https://github.com/ugli/uglisch</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:git://github.com/ugli/uglisch.git</connection>
+		<developerConnection>scm:git:git@github.com:ugli/uglisch.git</developerConnection>
+		<url>https://github.com/ugli/uglisch</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>fredrikkivi</id>
+			<name>Fredrik Kivi</name>
+			<email>fredrik.kivi@ugli.se</email>
+		</developer>
+	</developers>
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.saxon</groupId>
