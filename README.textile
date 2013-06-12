@@ -98,11 +98,11 @@ Use the repository http://repository-uglisch.forge.cloudbees.com/release and dec
 
 <pre><code>
 
-		<dependency>
-			<groupId>se.ugli</groupId>
-			<artifactId>uglisch</artifactId>
-			<version>1.0</version>
-		</dependency>
+<dependency>
+  <groupId>se.ugli</groupId>
+  <artifactId>uglisch</artifactId>
+  <version>1.0</version>
+</dependency>
 
 </code></pre>
 
