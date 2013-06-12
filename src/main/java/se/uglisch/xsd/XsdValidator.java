@@ -32,7 +32,7 @@ public class XsdValidator extends Validator {
 	private Map<String, Object> properties;
 
 	private XsdValidator(Source[] schemas, ErrorHandler errorHandler, LSResourceResolver resourceResolver,
-			Map<String, Boolean> features, Map<String, Object> properties) throws IOException {
+	    Map<String, Boolean> features, Map<String, Object> properties) throws IOException {
 		this.schemas = wrapSources(schemas);
 		this.errorHandler = errorHandler;
 		this.resourceResolver = resourceResolver;
@@ -41,12 +41,12 @@ public class XsdValidator extends Validator {
 	}
 
 	public static Validator apply(Source[] schemas, ErrorHandler errorHandler, LSResourceResolver resourceResolver,
-			Map<String, Boolean> features, Map<String, Object> properties) {
+	    Map<String, Boolean> features, Map<String, Object> properties) {
 		try {
-	    return new XsdValidator(schemas, errorHandler, resourceResolver, features, properties);
-    } catch (IOException e) {
-    	throw new RuntimeException(e);
-    }
+			return new XsdValidator(schemas, errorHandler, resourceResolver, features, properties);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -59,7 +59,6 @@ public class XsdValidator extends Validator {
 		try {
 			validateWithXerces(wrapedSource);
 		} catch (SAXParseException e) {
-			System.err.println(e.getMessage());
 			List<String> schematronErrors = validateSchematron(wrapedSource);
 			if (schematronErrors.isEmpty())
 				errorHandler.error(e);
@@ -67,19 +66,19 @@ public class XsdValidator extends Validator {
 				deligateSchematronErrors(schematronErrors, source);
 		}
 	}
-	
+
 	private Source[] wrapSources(Source[] sources) throws IOException {
 		List<Source> wrapedSources = new LinkedList<Source>();
-		for (Source source: sources) {
+		for (Source source : sources) {
 			wrapedSources.add(wrapSource(source));
 		}
-		return wrapedSources.toArray(new Source[]{});
+		return wrapedSources.toArray(new Source[] {});
 	}
-	
+
 	// TODO close streams
-	private Source wrapSource(Source source) throws IOException{
+	private Source wrapSource(Source source) throws IOException {
 		if (source instanceof StreamSource) {
-			StreamSource streamSource = (StreamSource)source;
+			StreamSource streamSource = (StreamSource) source;
 			InputStream inputStream = streamSource.getInputStream();
 			Reader reader = streamSource.getReader();
 			String systemId = streamSource.getSystemId();

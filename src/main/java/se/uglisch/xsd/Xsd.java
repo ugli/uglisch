@@ -21,7 +21,7 @@ public class Xsd extends Schema {
 	private final Map<String, Object> properties;
 
 	private Xsd(Source[] schemas, ErrorHandler errorHandler, LSResourceResolver resourceResolver,
-			Map<String, Boolean> features, Map<String, Object> properties) {
+	    Map<String, Boolean> features, Map<String, Object> properties) {
 		this.schemas = schemas;
 		this.errorHandler = errorHandler;
 		this.resourceResolver = resourceResolver;
@@ -30,7 +30,7 @@ public class Xsd extends Schema {
 	}
 
 	public static Schema apply(Source[] schemas, ErrorHandler errorHandler, LSResourceResolver resourceResolver,
-			Map<String, Boolean> features, Map<String, Object> properties) {
+	    Map<String, Boolean> features, Map<String, Object> properties) {
 		return new Xsd(schemas, errorHandler, resourceResolver, features, properties);
 	}
 

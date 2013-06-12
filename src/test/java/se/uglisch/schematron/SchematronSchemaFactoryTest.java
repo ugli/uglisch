@@ -22,8 +22,7 @@ public class SchematronSchemaFactoryTest {
 	@Test
 	public void test() throws SAXException, IOException {
 		try {
-			URL schemaUrl = getClass().getResource(
-					"/schematron/schematron_validator_command/PurchaseOrder.sch");
+			URL schemaUrl = getClass().getResource("/schematron/schematron_validator_command/PurchaseOrder.sch");
 			InputStream xmlStream = getClass().getResourceAsStream(
 			    "/schematron/schematron_validator_command/PurchaseOrderUnvalid.xml");
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XmlSchemaNsUris.SCHEMATRON_NS_URI);

@@ -36,8 +36,8 @@ public class SchematronValidatorCommandTest {
 		Source xmlSource = Resource.apply("/xsd/xsd_schema_factory/shiporderValid.xml");
 		List<String> errors = SchematronValidatorCommand.apply(schema, xmlSource).execute();
 		assertEquals(
-				"When in a \"item\" element, the element \"title\" should be immediately followed by the element \"note\".",
-				errors.get(0));
+		    "When in a \"item\" element, the element \"title\" should be immediately followed by the element \"note\".",
+		    errors.get(0));
 	}
 
 }

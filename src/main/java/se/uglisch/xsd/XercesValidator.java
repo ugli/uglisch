@@ -22,7 +22,7 @@ public class XercesValidator {
 	private final Source source;
 
 	private XercesValidator(Source source, Source[] schemas, LSResourceResolver resourceResolver,
-			Map<String, Boolean> features, Map<String, Object> properties) {
+	    Map<String, Boolean> features, Map<String, Object> properties) {
 		this.schemas = schemas;
 		this.resourceResolver = resourceResolver;
 		this.features = features;
@@ -31,7 +31,7 @@ public class XercesValidator {
 	}
 
 	public static XercesValidator apply(Source source, Source[] schemas, LSResourceResolver resourceResolver,
-			Map<String, Boolean> features, Map<String, Object> properties) {
+	    Map<String, Boolean> features, Map<String, Object> properties) {
 		return new XercesValidator(source, schemas, resourceResolver, features, properties);
 	}
 

@@ -23,7 +23,7 @@ public class SchematronValidator extends Validator {
 	}
 
 	public static SchematronValidator apply(Source schemaSource, ErrorHandler errorHandler,
-			LSResourceResolver resourceResolver) {
+	    LSResourceResolver resourceResolver) {
 		return new SchematronValidator(schemaSource, errorHandler, resourceResolver);
 	}
 
