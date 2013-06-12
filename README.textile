@@ -71,6 +71,8 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+public class XsdSchemaFactory {
+
 	@Test
 	public void validateFailure() throws Exception {
 		try {
