@@ -8,7 +8,7 @@ import javax.xml.validation.ValidatorHandler;
 import org.w3c.dom.ls.LSResourceResolver;
 import org.xml.sax.ErrorHandler;
 
-import se.uglisch.javax.SchematronValidatorHandler;
+import se.uglisch.javax.ValidatorHandlerImpl;
 
 public class Schematron extends Schema {
 
@@ -33,7 +33,7 @@ public class Schematron extends Schema {
 
 	@Override
 	public ValidatorHandler newValidatorHandler() {
-		return new SchematronValidatorHandler(errorHandler, resourceResolver);
+		return new ValidatorHandlerImpl(errorHandler, resourceResolver);
 	}
 
 }

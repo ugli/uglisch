@@ -10,13 +10,13 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-public class SchematronValidatorHandler extends ValidatorHandler {
+public class ValidatorHandlerImpl extends ValidatorHandler {
 
 	private ErrorHandler errorHandler;
 	private LSResourceResolver resourceResolver;
 	private ContentHandler receiver;
 
-	public SchematronValidatorHandler(ErrorHandler errorHandler, LSResourceResolver resourceResolver) {
+	public ValidatorHandlerImpl(ErrorHandler errorHandler, LSResourceResolver resourceResolver) {
 		this.errorHandler = errorHandler;
 		this.resourceResolver = resourceResolver;
 		this.receiver = this;

@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 
 import se.uglisch.XmlSchemaNsUris;
 import se.uglisch.javax.DefaultErrorHandler;
-import se.uglisch.javax.DefaultResourceResolver;
+import se.uglisch.javax.ResourceResolverImpl;
 
 public class SchematronSchemaFactory extends SchemaFactory {
 
@@ -19,7 +19,7 @@ public class SchematronSchemaFactory extends SchemaFactory {
 
 	public SchematronSchemaFactory() {
 		errorHandler = new DefaultErrorHandler();
-		resourceResolver = new DefaultResourceResolver();
+		resourceResolver = new ResourceResolverImpl();
 	}
 
 	@Override
