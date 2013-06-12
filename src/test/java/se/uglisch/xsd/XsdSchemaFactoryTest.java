@@ -3,7 +3,11 @@ package se.uglisch.xsd;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.InputStream;
+import java.net.URL;
+
 import javax.xml.XMLConstants;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
@@ -34,16 +38,18 @@ public class XsdSchemaFactoryTest {
 	@Test
 	public void validateFailure() throws Exception {
 		try {
+			URL schemaUrl = getClass().getResource("/xsd/xsd_schema_factory/shiporder.xsd");
+			InputStream xmlStream = getClass().getResourceAsStream("/xsd/xsd_schema_factory/shiporderUnvalid.xml");
 			SchemaFactory newInstance = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = newInstance.newSchema(Resource.apply("/xsd/xsd_schema_factory/shiporder.xsd"));
+			Schema schema = newInstance.newSchema(schemaUrl);
 			Validator validator = schema.newValidator();
-			validator.validate(Resource.apply("/xsd/xsd_schema_factory/shiporderUnvalid.xml"));
+			validator.validate(new StreamSource(xmlStream));
 			fail();
 		} catch (SAXParseException e) {
 			assertEquals("\"quantity\" elements or attributes should have a value of type\"integer\".", e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void setUnknowProperty() throws SAXNotRecognizedException, SAXNotSupportedException {
 		SchemaFactory newInstance = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -55,6 +61,5 @@ public class XsdSchemaFactoryTest {
 		SchemaFactory newInstance = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		newInstance.setFeature("anti-flag", true);
 	}
-	
-	
+
 }

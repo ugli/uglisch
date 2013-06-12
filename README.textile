@@ -7,6 +7,11 @@ UgliSch comes with implementations of "javax.xml.validation.SchemaFactory":http:
 
 These schema factories is loaded when the library is on the classpath by /META-INF/services/javax.xml.validation.SchemaFactory
 
+h2. Motivation
+
+* "Schematron":http://www.schematron.com/ is a much nicer and more powerfull syntax than "W3C XML Schema":http://www.w3.org/XML/Schema
+* If you should use W3C XML Schema for error messages, the message "cvc-datatype-valid.1.2.1: 'anti-flag' is not a valid value for 'integer'." isn't very usefull
+
 h2. Validate with Schematron schema
 
 <pre><code>
@@ -32,9 +37,10 @@ public class SchematronSchemaFactoryTest {
 	@Test
 	public void test() throws SAXException, IOException {
 		try {
-			URL schemaUrl = getClass().getResource("/schematron/schematron_validator_command/PurchaseOrder.sch");
+			URL schemaUrl = getClass().getResource(
+					"/schematron/schematron_validator_command/PurchaseOrder.sch");
 			InputStream xmlStream = getClass().getResourceAsStream(
-					"/schematron/schematron_validator_command/PurchaseOrderUnvalid.xml");
+			    "/schematron/schematron_validator_command/PurchaseOrderUnvalid.xml");
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XmlSchemaNsUris.SCHEMATRON_NS_URI);
 			Schema schema = schemaFactory.newSchema(schemaUrl);
 			schema.newValidator().validate(new StreamSource(xmlStream));
@@ -46,3 +52,55 @@ public class SchematronSchemaFactoryTest {
 
 }
 </code></pre>
+
+h2. Validate W3C XML Schema as converted to Schematron
+
+<pre><code>
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import org.junit.Test;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+import se.uglisch.XmlSchemaNsUris;
+
+public class SchematronSchemaFactoryTest {
+
+	@Test
+	public void validateFailure() throws Exception {
+		try {
+			URL schemaUrl = getClass().getResource("/xsd/xsd_schema_factory/shiporder.xsd");
+			StreamSource xmlSource = new StreamSource("/xsd/xsd_schema_factory/shiporderUnvalid.xml");
+			SchemaFactory newInstance = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			Schema schema = newInstance.newSchema(schemaUrl);
+			Validator validator = schema.newValidator();
+			validator.validate(xmlSource);
+			fail();
+		} catch (SAXParseException e) {
+			assertEquals("\"quantity\" elements or attributes should have a value of type\"integer\".", e.getMessage());
+		}
+	}
+}
+</code></pre>
+
+h2. Maven dependency
+
+Use the repository http://repository-uglisch.forge.cloudbees.com/release and declare the dependency
+
+<code><pre>
+		<dependency>
+			<groupId>se.ugli</groupId>
+			<artifactId>uglisch</artifactId>
+			<version>1.0</version>
+		</dependency>
+</code></pre>
+
