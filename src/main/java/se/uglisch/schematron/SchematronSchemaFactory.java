@@ -49,12 +49,10 @@ public class SchematronSchemaFactory extends SchemaFactory {
 
 	@Override
 	public Schema newSchema(Source[] schemas) {
-		if (schemas == null || schemas.length == 0) {
+		if (schemas == null || schemas.length == 0)
 			throw new IllegalStateException("No schemas");
-		}
-		if (schemas.length < 1) {
+		if (schemas.length < 1) 
 			throw new IllegalStateException("Just one schema is supported");
-		}
 		return Schematron.apply(schemas[0], errorHandler, resourceResolver);
 	}
 

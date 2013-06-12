@@ -21,9 +21,8 @@ public class Resource extends StreamSource {
 	@Override
 	public InputStream getInputStream() {
 		final InputStream stream = getClass().getResourceAsStream(value);
-		if (stream == null) {
+		if (stream == null) 
 			throw new ResourceNotFoundException(value);
-		}
 		return stream;
 	}
 

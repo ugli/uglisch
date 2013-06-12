@@ -55,9 +55,8 @@ public class SchematronValidatorCommand {
 			XPathSelector xPathSelector = xPathCompiler.compile("//*:failed-assert/*:text").load();
 			xPathSelector.setContextItem(builder.build(result));
 			Set<String> errors = new LinkedHashSet<String>();
-			for (XdmItem item : xPathSelector.evaluate()) {
+			for (XdmItem item : xPathSelector.evaluate())
 				errors.add(normalizeStr(item));
-			}
 			return new LinkedList<String>(errors);
 		} catch (SaxonApiException e) {
 			throw new RuntimeException(e);
