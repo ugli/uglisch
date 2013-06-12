@@ -28,5 +28,4 @@
 			<xs:attribute name="orderid" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
-
 </xs:schema>

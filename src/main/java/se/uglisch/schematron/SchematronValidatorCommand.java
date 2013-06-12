@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import javax.xml.transform.Source;
 
@@ -51,16 +52,27 @@ public class SchematronValidatorCommand {
 			Processor processor = new Processor(false);
 			XPathCompiler xPathCompiler = processor.newXPathCompiler();
 			DocumentBuilder builder = processor.newDocumentBuilder();
-			XPathSelector xPathSelector = xPathCompiler.compile("//*:text").load();
+			XPathSelector xPathSelector = xPathCompiler.compile("//*:failed-assert/*:text").load();
 			xPathSelector.setContextItem(builder.build(result));
 			Set<String> errors = new LinkedHashSet<String>();
 			for (XdmItem item : xPathSelector.evaluate()) {
-				errors.add(item.getStringValue());
+				errors.add(normalizeStr(item));
 			}
 			return new LinkedList<String>(errors);
 		} catch (SaxonApiException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private static String normalizeStr(XdmItem item) {
+		StringBuilder stringBuilder = new StringBuilder();
+		StringTokenizer stringTokenizer = new StringTokenizer(item.getStringValue());
+		while (stringTokenizer.hasMoreTokens()) {
+			stringBuilder.append(stringTokenizer.nextToken());
+			if (stringTokenizer.hasMoreElements())
+				stringBuilder.append(" ");
+		}
+		return stringBuilder.toString();
 	}
 
 }
