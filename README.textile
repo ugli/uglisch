@@ -71,8 +71,6 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import se.uglisch.XmlSchemaNsUris;
-
 public class SchematronSchemaFactoryTest {
 
 	@Test
