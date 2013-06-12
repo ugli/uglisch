@@ -97,12 +97,10 @@ h2. Maven dependency
 Use the repository http://repository-uglisch.forge.cloudbees.com/release and declare the dependency
 
 <pre><code>
-
 <dependency>
   <groupId>se.ugli</groupId>
   <artifactId>uglisch</artifactId>
   <version>1.0</version>
 </dependency>
-
 </code></pre>
 
