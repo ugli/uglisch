@@ -374,7 +374,7 @@
          <sch:extends rule="ns1-xsd-datatype-string"/>
       </sch:rule>
       <sch:rule role="datatype" context="shiporder/item/quantity">
-         <sch:extends rule="ns1-xsd-datatype-positiveInteger"/>
+         <sch:extends rule="ns1-xsd-datatype-integer"/>
       </sch:rule>
       <sch:rule role="datatype" context="shiporder/item/price">
          <sch:extends rule="ns1-xsd-datatype-decimal"/>
@@ -450,40 +450,40 @@
       <sch:rule id="DefinedElement" abstract="true">
          <sch:assert test="true()">The element name "<sch:name/>" is defined.</sch:assert>
       </sch:rule>
-      <sch:rule context="address'">
+      <sch:rule context="address">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="city'">
+      <sch:rule context="city">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="country'">
+      <sch:rule context="country">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="item'">
+      <sch:rule context="item">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="name'">
+      <sch:rule context="name">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="note'">
+      <sch:rule context="note">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="orderperson'">
+      <sch:rule context="orderperson">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="price'">
+      <sch:rule context="price">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="quantity'">
+      <sch:rule context="quantity">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="shiporder'">
+      <sch:rule context="shiporder">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="shipto'">
+      <sch:rule context="shipto">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
-      <sch:rule context="title'">
+      <sch:rule context="title">
          <sch:extends rule="DefinedElement"/>
       </sch:rule>
       <!--
