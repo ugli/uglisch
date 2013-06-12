@@ -1578,7 +1578,7 @@ THE SOFTWARE.
 		      <xsl:with-param name="name" select="@name"/>
 		   </xsl:call-template>
 		</xsl:variable>   
-		<sch:rule context="{$qname}'">
+		<sch:rule context="{$qname}">
 			<sch:extends rule="DefinedElement" />
 		</sch:rule>
 	</xsl:for-each>
