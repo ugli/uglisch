@@ -71,17 +71,15 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-public class XsdSchemaFactory {
-
 	@Test
 	public void validateFailure() throws Exception {
 		try {
 			URL schemaUrl = getClass().getResource("/xsd/xsd_schema_factory/shiporder.xsd");
-			StreamSource xmlSource = new StreamSource("/xsd/xsd_schema_factory/shiporderUnvalid.xml");
+			InputStream xmlStream = getClass().getResourceAsStream("/xsd/xsd_schema_factory/shiporderUnvalid.xml");
 			SchemaFactory newInstance = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 			Schema schema = newInstance.newSchema(schemaUrl);
 			Validator validator = schema.newValidator();
-			validator.validate(xmlSource);
+			validator.validate(new StreamSource(xmlStream));
 			fail();
 		} catch (SAXParseException e) {
 			assertEquals("\"quantity\" elements or attributes should have a value of type\"integer\".", e.getMessage());
