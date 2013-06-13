@@ -92,13 +92,13 @@ public class XsdSchemaFactory {
 
 h2. Maven dependency
 
-Use the repository http://repository-uglisch.forge.cloudbees.com/release and declare the dependency
+Declare the dependency in your pom.xml
 
 <pre><code>
 <dependency>
   <groupId>se.ugli</groupId>
   <artifactId>uglisch</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
 </dependency>
 </code></pre>
 
