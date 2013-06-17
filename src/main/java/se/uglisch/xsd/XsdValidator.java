@@ -22,6 +22,7 @@ import org.xml.sax.SAXParseException;
 
 import se.uglisch.schematron.SchematronValidationException;
 import se.uglisch.schematron.SchematronValidatorCommand;
+import se.uglisch.xerces.XercesValidator;
 
 public class XsdValidator extends Validator {
 
