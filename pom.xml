@@ -5,7 +5,7 @@
 	<artifactId>uglisch</artifactId>
 	<packaging>jar</packaging>
 	<name>UgliSch</name>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3</version>
 	<description>Ugli Schematron Validator</description>
 	<url>https://github.com/ugli/uglisch</url>
 	<licenses>
