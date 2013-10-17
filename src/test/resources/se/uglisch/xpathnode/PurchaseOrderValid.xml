@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PurchaseOrder orderDate="1999-05-20">
+	<shipTo type="US">
+		<name>Alice Smith</name>
+		<street>123 Maple Street</street>
+		<city>Mill Valley</city>
+		<state>CA</state>
+		<zip>90952</zip>
+	</shipTo>
+	<shipDate>1999-05-25</shipDate>
+	<comment>Get these things to me in a hurry, my lawn is going wild!</comment>
+	<Items>
+		<Item pno="333-333">
+			<productName>Lawnmower, model BUZZ-1</productName>
+			<quantity>2</quantity>
+			<price>148.95</price>
+			<comment>Please confirm this is the electric model</comment>
+		</Item>
+		<Item pno="444-444">
+			<productName>Baby Monitor, model SNOOZE-2</productName>
+			<quantity>1</quantity>
+			<price>39.98</price>
+		</Item>
+	</Items>
+</PurchaseOrder>
