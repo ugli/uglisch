@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import se.uglisch.schematron.SchematronValidationException;
-import se.uglisch.schematron.SchematronValidatorCommand;
+import se.uglisch.schematron.xslt.ValidatorImpl;
 import se.uglisch.xerces.XercesValidator;
 
 public class XsdValidator extends Validator {
@@ -103,7 +103,7 @@ public class XsdValidator extends Validator {
 		if (schemas.length < 1)
 			throw new IllegalStateException("Just one schema is supported");
 		Source schematronSource = Xsd2SchCommand.apply(schemas[0]).execute();
-		return SchematronValidatorCommand.apply(schematronSource, source).execute();
+		return ValidatorImpl.apply(schematronSource).validate(source);
 	}
 
 	private void deligateSchematronErrors(List<String> schematronErrors, Source source) throws SAXException {

@@ -12,7 +12,7 @@
 	<Items>
 		<Item pno="333-333">
 			<productName>Lawnmower, model BUZZ-1</productName>
-			<quantity>1</quantity>
+			<quantity>2</quantity>
 			<price>148.95</price>
 			<comment>Please confirm this is the electric model</comment>
 		</Item>

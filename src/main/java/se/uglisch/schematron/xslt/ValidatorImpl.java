@@ -1,4 +1,4 @@
-package se.uglisch.schematron;
+package se.uglisch.schematron.xslt;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -18,27 +18,25 @@ import se.uglisch.resource.Resource;
 import se.uglisch.xslt.Result;
 import se.uglisch.xslt.XsltTransform;
 
-public class SchematronValidatorCommand {
+public class ValidatorImpl {
 
 	private final Source schema;
-	private final Source xml;
 	private final Resource xsltInclude;
 	private final Resource xsltExpand;
 	private final Resource xsltCompile;
 
-	private SchematronValidatorCommand(Source schema, Source xml) {
+	private ValidatorImpl(Source schema) {
 		this.schema = schema;
-		this.xml = xml;
 		xsltInclude = Resource.apply("/schematron/code/iso_dsdl_include.xsl");
 		xsltExpand = Resource.apply("/schematron/code/iso_abstract_expand.xsl");
 		xsltCompile = Resource.apply("/schematron/code/iso_svrl_for_xslt2.xsl");
 	}
 
-	public static SchematronValidatorCommand apply(Source schema, Source xml) {
-		return new SchematronValidatorCommand(schema, xml);
+	public static ValidatorImpl apply(Source schema) {
+		return new ValidatorImpl(schema);
 	}
 
-	public List<String> execute() {
+	public List<String> validate(Source xml) {
 		Source transformedSchema = XsltTransform.apply(xsltInclude, schema, "/schematron/code/").transform();
 		transformedSchema = XsltTransform.apply(xsltExpand, transformedSchema, "/schematron/code/").transform();
 		transformedSchema = XsltTransform.apply(xsltCompile, transformedSchema, "/schematron/code/").transform();

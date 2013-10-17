@@ -10,6 +10,8 @@ import org.w3c.dom.ls.LSResourceResolver;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
+import se.uglisch.schematron.xslt.ValidatorImpl;
+
 public class SchematronValidator extends Validator {
 
 	private Source schemaSource;
@@ -33,7 +35,7 @@ public class SchematronValidator extends Validator {
 
 	@Override
 	public void validate(Source xmlSource, Result result) throws SAXException {
-		List<String> errors = SchematronValidatorCommand.apply(schemaSource, xmlSource).execute();
+		List<String> errors = ValidatorImpl.apply(schemaSource).validate(xmlSource);
 		for (String error : errors) {
 			errorHandler.error(new SchematronValidationException(error, xmlSource));
 		}
