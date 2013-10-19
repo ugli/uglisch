@@ -2,11 +2,17 @@ package se.uglisch.schematron.iso
 
 import se.uglisch.xpathnode.XpathNode
 import javax.xml.transform.Source
+import org.w3c.dom.ls.LSResourceResolver
+import org.xml.sax.ErrorHandler
 
 object Schema {
-  def apply(source: Source): Option[Schema] =
+  def apply(
+    source: Source,
+    errorHandler: Option[ErrorHandler] = None,
+    resourceResolver: Option[LSResourceResolver] = None): Option[Schema] =
+
     XpathNode.apply(source).evaluateSingle("//*:schema") match {
-      case Some(node) => Option(new Schema(node))
+      case Some(node) => Option(new Schema(node, errorHandler, resourceResolver))
       case None => None
     }
 }
@@ -33,7 +39,11 @@ object Schema {
  * }
  * </pre>
  */
-class Schema(xpathNode: XpathNode) {
+class Schema(
+  xpathNode: XpathNode,
+  errorHandler: Option[ErrorHandler],
+  resourceResolver: Option[LSResourceResolver]) extends javax.xml.validation.Schema {
+
   lazy val schematronNamespace = xpathNode.namespace.get
   lazy val id = xpathNode.attribute("id")
   lazy val schemaVersion = xpathNode.attribute("schemaVersion")
@@ -50,6 +60,12 @@ class Schema(xpathNode: XpathNode) {
     xpathNode.evaluate("*:pattern").map(new Pattern(_)).toList
   def includes: List[Include] =
     xpathNode.evaluate("*:include").map(new Include(_)).toList
+
+  def newValidator(): Validator =
+    new Validator(Schema.this, errorHandler, resourceResolver)
+
+  def newValidatorHandler() =
+    null
 }
 
 class Include(xpathNode: XpathNode)

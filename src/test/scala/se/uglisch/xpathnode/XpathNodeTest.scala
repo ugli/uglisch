@@ -1,6 +1,7 @@
 package se.uglisch.xpathnode
 
 import org.junit.Test
+import se.uglisch.resource.Resource
 
 class XpathNodeTest {
 

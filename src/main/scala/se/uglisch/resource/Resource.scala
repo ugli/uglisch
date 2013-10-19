@@ -1,12 +1,14 @@
-package se.uglisch.xpathnode
+package se.uglisch.resource
 
 import java.io.InputStream
-import javax.xml.transform.Source
-import javax.xml.transform.stream.StreamSource
-import org.apache.commons.io.IOUtils
-import java.io.StringWriter
 import java.io.Reader
 import java.io.StringReader
+import java.io.StringWriter
+
+import org.apache.commons.io.IOUtils
+
+import javax.xml.transform.Source
+import javax.xml.transform.stream.StreamSource
 
 case class Resource(path: String) {
 
@@ -31,3 +33,6 @@ class ResourceSource(stream: InputStream) extends StreamSource {
     new StringReader(data)
 
 }
+
+
+
