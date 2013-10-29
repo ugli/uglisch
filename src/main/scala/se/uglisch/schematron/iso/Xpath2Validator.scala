@@ -5,14 +5,19 @@ import se.uglisch.xpathnode.XpathNode
 import net.sf.saxon.value.BooleanValue
 import net.sf.saxon.om.Sequence
 
-class Xpath2Validator(schema: Schema) {
+object Xpath2Validator {
+  def validate(schematron: IsoSchema, xml: Source): List[String] =
+    (new Xpath2Validator(schematron)).validate(xml)
+}
+
+class Xpath2Validator(schematron: IsoSchema) {
 
   def validate(xml: Source): List[String] =
     validatePatterns(XpathNode(xml))
 
   private def validatePatterns(xmlXpathNode: XpathNode): List[String] =
     (for {
-      pattern <- schema.patterns
+      pattern <- schematron.patterns
       rule <- pattern.rules
     } yield validateRule(rule, xmlXpathNode)).flatten
 

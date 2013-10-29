@@ -9,16 +9,18 @@ class ValidatorTest {
   @Test
   def xpath2: Unit = {
     val schemaResource = Resource("/se/uglisch/schematron/iso/PurchaseOrder.sch")
+    val schema = IsoSchema(schemaResource.asSource.get)
     val xmlResource = Resource("/se/uglisch/schematron/iso/PurchaseOrderValid.xml")
-    Validator(schemaResource, None, None).get.validate(xmlResource.asSource.get)
+    new IsoValidator(schema).validate(xmlResource.asSource.get)
   }
 
   @Test
   def defaultBinding: Unit = {
     try {
       val schemaResource = Resource("/se/uglisch/schematron/iso/PurchaseOrder1.sch")
+      val schema = IsoSchema(schemaResource.asSource.get)
       val xmlResource = Resource("/se/uglisch/schematron/iso/PurchaseOrderValid.xml")
-      Validator(schemaResource, None, None).get.validate(xmlResource.asSource.get)
+      new IsoValidator(schema).validate(xmlResource.asSource.get)
     } catch {
       case e: UnsupportedOperationException => assertEquals("queryBinding: xslt", e.getMessage)
     }

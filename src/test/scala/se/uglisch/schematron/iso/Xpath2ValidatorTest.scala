@@ -9,7 +9,7 @@ class Xpath2ValidatorTest {
   @Test
   def xpath2: Unit = {
     val schemaResource = Resource("/se/uglisch/schematron/iso/PurchaseOrder.sch")
-    val schema = SchemaFactory().create(schemaResource.asSource.get).get
+    val schema = IsoSchema(schemaResource.asSource.get)
     val xmlResource = Resource("/se/uglisch/schematron/iso/PurchaseOrderValid.xml")
     val messages = new Xpath2Validator(schema).validate(xmlResource.asSource.get)
     println(messages)

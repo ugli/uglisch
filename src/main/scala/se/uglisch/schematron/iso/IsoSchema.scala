@@ -1,19 +1,21 @@
 package se.uglisch.schematron.iso
 
-import se.uglisch.xpathnode.XpathNode
-import javax.xml.transform.Source
 import org.w3c.dom.ls.LSResourceResolver
 import org.xml.sax.ErrorHandler
 
-object Schema {
-  def apply(
-    source: Source,
-    errorHandler: Option[ErrorHandler] = None,
-    resourceResolver: Option[LSResourceResolver] = None): Option[Schema] =
+import javax.xml.transform.Source
+import javax.xml.validation.Schema
+import se.uglisch.xpathnode.XpathNode
 
-    XpathNode.apply(source).evaluateSingle("//*:schema") match {
-      case Some(node) => Option(new Schema(node, errorHandler, resourceResolver))
-      case None => None
+object IsoSchema {
+  def apply(
+    SchematronSource: Source,
+    errorHandler: ErrorHandler = null,
+    resourceResolver: LSResourceResolver = null): IsoSchema =
+
+    XpathNode.apply(SchematronSource).evaluateSingle("//*:schema") match {
+      case Some(node) => new IsoSchema(node, errorHandler, resourceResolver)
+      case None => throw new IllegalArgumentException("Couldn't find element schema in source")
     }
 }
 
@@ -39,10 +41,10 @@ object Schema {
  * }
  * </pre>
  */
-class Schema(
+class IsoSchema(
   xpathNode: XpathNode,
-  errorHandler: Option[ErrorHandler],
-  resourceResolver: Option[LSResourceResolver]) extends javax.xml.validation.Schema {
+  errorHandler: ErrorHandler,
+  resourceResolver: LSResourceResolver) extends Schema {
 
   lazy val schematronNamespace = xpathNode.namespace.get
   lazy val id = xpathNode.attribute("id")
@@ -61,10 +63,10 @@ class Schema(
   def includes: List[Include] =
     xpathNode.evaluate("*:include").map(new Include(_)).toList
 
-  def newValidator(): Validator =
-    new Validator(Schema.this, errorHandler, resourceResolver)
+  def newValidator(): IsoValidator =
+    new IsoValidator(IsoSchema.this, errorHandler, resourceResolver)
 
-  def newValidatorHandler() =
+  override def newValidatorHandler() =
     null
 }
 
