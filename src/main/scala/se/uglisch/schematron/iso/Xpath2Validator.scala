@@ -4,6 +4,7 @@ import javax.xml.transform.Source
 import se.uglisch.xpathnode.XpathNode
 import net.sf.saxon.value.BooleanValue
 import net.sf.saxon.om.Sequence
+import java.util.StringTokenizer
 
 object Xpath2Validator {
   def validate(schematron: IsoSchema, xml: Source): List[String] =
@@ -66,9 +67,20 @@ class Xpath2Validator(schematron: IsoSchema) {
   private def assertMessage(assert: Assert): Option[String] =
     assert.text match {
       case Some(text) =>
-        Option(text.trim)
+        Option(trimText(text))
       case None =>
         throw new IllegalStateException("No assert message: " + assert)
     }
+
+  private def trimText(text: String): String = {
+    val textBuilder = new StringBuilder
+    val tokenizer = new StringTokenizer(text)
+    while (tokenizer.hasMoreTokens()) {
+      textBuilder.append(tokenizer.nextToken)
+      if (tokenizer.hasMoreTokens)
+        textBuilder.append(' ')
+    }
+    textBuilder.toString
+  }
 
 }

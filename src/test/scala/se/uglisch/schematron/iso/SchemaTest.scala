@@ -4,6 +4,8 @@ import org.junit.Test
 import org.junit.Assert._
 import se.uglisch.xpathnode.XpathNode
 import se.uglisch.resource.Resource
+import java.io.File
+import javax.xml.transform.stream.StreamSource
 
 class SchemaTest {
 

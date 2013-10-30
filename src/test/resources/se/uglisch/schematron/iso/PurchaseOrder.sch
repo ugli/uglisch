@@ -52,13 +52,16 @@
     <pattern>
         <rule context="PurchaseOrder">
             <assert test="shipTo">
-                A purchase order element should have a shipping address. There should be a shipTo element contained by the PurchaseOrder element.
+                A purchase order element should have a shipping address. 
+There should be a shipTo element contained by the PurchaseOrder element.
             </assert>
             <assert test="@orderDate">
-                A purchase order element should have a shipping address. There should be a shipTo element contained by the PurchaseOrder element.
+                A purchase order element should have a shipping address.
+ There should be a shipTo element contained by the PurchaseOrder element.
             </assert>
             <assert test="@orderDate1">
-                A purchase order element should have a shipping address. There should be a shipTo element contained by the PurchaseOrder element.
+                A purchase order element should have a shipping address. 
+There should be a shipTo element contained by the PurchaseOrder element.
             </assert>
             <assert test="1 eq 2">
                 testar lite
