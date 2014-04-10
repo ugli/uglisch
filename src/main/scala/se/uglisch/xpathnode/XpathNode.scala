@@ -7,6 +7,9 @@ import scala.collection.JavaConversions._
 import net.sf.saxon.tree.tiny.TinyElementImpl
 import net.sf.saxon.s9api.XPathSelector
 import net.sf.saxon.om.Sequence
+import net.sf.saxon.s9api.XPathExecutable
+import scala.collection.mutable.HashMap
+import scala.collection.mutable.SynchronizedMap
 
 object XpathNode {
 
@@ -16,6 +19,18 @@ object XpathNode {
 
   def apply(source: Source): XpathNode =
     new XpathNode(documentBuilder.build(source))
+
+}
+
+object XPathExecutableFactory {
+
+  private val xpathCache = new HashMap[String, XPathExecutable] with SynchronizedMap[String, XPathExecutable]
+
+  def create(expr: String): XPathExecutable = {
+    if (!xpathCache.contains(expr))
+      xpathCache(expr) = XpathNode.xPathCompiler.compile(expr)
+    xpathCache(expr)
+  }
 
 }
 
@@ -33,7 +48,7 @@ class XpathNode(xdmItem: XdmItem) {
   lazy val underlyingValue: Sequence = xdmItem.getUnderlyingValue
 
   private def selector(expr: String): XPathSelector = {
-    val selector = XpathNode.xPathCompiler.compile(expr).load
+    val selector = XPathExecutableFactory.create(expr).load
     selector.setContextItem(xdmItem)
     selector
   }
