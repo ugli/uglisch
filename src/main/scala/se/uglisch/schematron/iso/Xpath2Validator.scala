@@ -16,6 +16,14 @@ class Xpath2Validator(schematron: IsoSchema) {
   def validate(xml: Source): List[String] =
     validatePatterns(XpathNode(xml))
 
+  //  private def validatePatterns(xmlXpathNode: XpathNode): List[String] = {
+  //    val rules: List[Rule] = (for {
+  //      pattern <- schematron.patterns
+  //      rule <- pattern.rules
+  //    } yield rule)
+  //    rules.par.map(validateRule(_, xmlXpathNode)).flatten.toList
+  //  }
+
   private def validatePatterns(xmlXpathNode: XpathNode): List[String] =
     (for {
       pattern <- schematron.patterns
