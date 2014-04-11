@@ -24,7 +24,7 @@ object XpathNode {
 
 object XPathExecutableFactory {
 
-  private val xpathCache = new HashMap[String, XPathExecutable]
+  private val xpathCache = new HashMap[String, XPathExecutable] with SynchronizedMap[String, XPathExecutable]
 
   def create(expr: String): XPathExecutable = {
     if (!xpathCache.contains(expr))
