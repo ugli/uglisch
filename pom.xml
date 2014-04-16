@@ -5,7 +5,7 @@
 	<artifactId>uglisch</artifactId>
 	<packaging>jar</packaging>
 	<name>UgliSch</name>
-	<version>1.1.6-SNAPSHOT</version>
+	<version>1.1.6</version>
 	<description>Ugli Schematron Validator</description>
 	<url>https://github.com/ugli/uglisch</url>
 	<licenses>
@@ -19,7 +19,7 @@
 		<connection>scm:git:git@github.com:ugli/uglisch.git</connection>
 		<developerConnection>scm:git:git@github.com:ugli/uglisch.git</developerConnection>
 		<url>git@github.com:ugli/uglisch.git</url>
-		<tag>uglisch-1.1.0</tag>
+		<tag>uglisch-1.1.6</tag>
 	</scm>
 	<developers>
 		<developer>
